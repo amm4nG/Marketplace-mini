@@ -33,10 +33,13 @@
     color: #38527E !important;
 }
 
-/* .img-cover {
-    height: 250px;
-    object-fit: cover;
-} */
+@media (max-width: 700px){
+    .slide-cover {
+        height: 250px;
+        object-fit: cover;
+    }
+}
+
 
 .img-cover {
   transition: transform 0.3s ease;
