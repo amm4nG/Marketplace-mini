@@ -1,0 +1,50 @@
+.divider {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid grey;
+    line-height: 0.1em;
+    margin-bottom: 25px
+}
+
+.divider span {
+    background-color: #f8f9fa;
+    padding: 0 10px;
+    color: grey;
+    font-size: 14px;
+}
+
+.bg-body-tertiary {
+    background-color: #DDDDDD !important;
+}
+
+.btn-light {
+    background-color: #DDDDDD;
+}
+
+.btn-primary {
+    background-color: #38527E;
+}
+
+.btn-primary:hover {
+    background-color: #2f4874;
+}
+
+.text-primary {
+    color: #38527E !important;
+}
+
+/* .img-cover {
+    height: 250px;
+    object-fit: cover;
+} */
+
+.img-cover {
+  transition: transform 0.3s ease;
+  height: 250px;
+  object-fit: cover;
+}
+
+.img-cover:hover {
+    transform: scale(0.8);
+    object-fit: contain;
+}
