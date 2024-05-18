@@ -40,14 +40,10 @@
     }
 }
 
-
 .img-cover {
   transition: transform 0.3s ease;
   height: 250px;
   object-fit: cover;
-}
-
-.img-cover:hover {
-    transform: scale(0.8);
-    object-fit: contain;
+  transform: scale(0.8);
+  object-fit: contain;
 }
