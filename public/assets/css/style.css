@@ -14,7 +14,7 @@
 }
 
 .bg-body-tertiary {
-    background-color: #DDDDDD !important;
+    background-color: #38527E !important;
 }
 
 .btn-light {
@@ -22,7 +22,7 @@
 }
 
 .btn-primary {
-    background-color: #38527E;
+    background-color: #38527E !important;
 }
 
 .btn-primary:hover {
@@ -38,6 +38,8 @@
         height: 250px;
         object-fit: cover;
     }
+
+    
 }
 
 .img-cover {
@@ -46,4 +48,16 @@
   object-fit: cover;
   transform: scale(0.8);
   object-fit: contain;
+}
+
+.img-thumbnail {
+    border-color: #38527E;
+} 
+
+.navbar-toggler {
+    background-color: white;
+}
+
+.text-secondary {
+    color: #DDDDDD !important;
 }
