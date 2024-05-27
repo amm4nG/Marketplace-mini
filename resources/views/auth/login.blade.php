@@ -9,8 +9,13 @@
                 <form action="{{ route('validation.user') }}" method="post">
                     <div class="card p-3 shadow-lg">
                         @csrf
+                        <div class="row justify-content-center">
+                            <div class="col-md-12 text-center">
+                                <img src="{{ asset('assets/images/logo.png') }}" class="rounded-circle" style="width: 70px; height: 70px;" alt="">
+                            </div>
+                        </div>
                         <h2 class="text-center mb-4 mt-2 text-primary fw-bold"><a href="{{ route('home') }}"
-                                class="nav-link">MusicInstrument</a></h2>
+                                class="nav-link">Musicall<span class="text-warning">Instrument</span></a></h2>
                         @if ($errors->has('message'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ $errors->first('message') }}
@@ -40,7 +45,7 @@
                             @enderror
                             <label for="floatingPassword">Password</label>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-4 mb-3 p-3"><i class="fal fa-sign-in"></i>
+                        <button type="submit" class="btn btn-primary mt-4 mb-3 p-3"><i class="fal fa-sign-in-alt"></i>
                             Login</button>
                         <p class="text-center">Not Registered? <a href="{{ route('register') }}">Register</a></p>
                         <div class="divider "><span>atau</span></div>

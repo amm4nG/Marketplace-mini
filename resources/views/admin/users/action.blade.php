@@ -8,5 +8,4 @@
         data-username="{{ $user->username }}" data-url="{{ route('users.update', $user->id) }}" data-email="{{ $user->email }}" data-url="{{ route('users.update', $user->id) }}">
         <i class="fas fa-pen"></i>
     </a>
-    <a href="" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i></a>
 </form>

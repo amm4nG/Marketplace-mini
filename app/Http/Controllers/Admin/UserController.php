@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Seller;
+namespace App\Http\Controllers\Admin;
 
-use App\DataTables\Seller\UserDataTable;
+use App\DataTables\Admin\UserDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\User;
@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function index(UserDataTable $dataTable)
     {
-        return $dataTable->render('seller.users.index');
+        return $dataTable->render('admin.users.index');
     }
 
     public function store(Request $request)

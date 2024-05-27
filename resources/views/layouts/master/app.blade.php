@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ asset('assets/images/title.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/png">
     <title>MusicInstrument | @yield('title')</title>
 
     <!-- Custom fonts for this template-->

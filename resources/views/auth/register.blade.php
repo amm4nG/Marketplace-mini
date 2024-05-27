@@ -9,9 +9,15 @@
                 <form action="{{ route('register.user') }}" method="post">
                     @csrf
                     <div class="card p-3 shadow-lg">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12 text-center">
+                                <img src="{{ asset('assets/images/logo.png') }}" class="rounded-circle" style="width: 70px; height: 70px;"
+                                    alt="">
+                            </div>
+                        </div>
                         <h2 class="text-center mb-4 mt-2 text-primary fw-bold"><a href="{{ route('home') }}"
                                 class="nav-link">
-                                MusicInstrument</a></h2>
+                                Musicall<span class="text-warning">Instrument</span></a></h2>
                         <div class="form-floating mb-3">
                             <input type="username" name="username"
                                 class="form-control @error('username') is-invalid

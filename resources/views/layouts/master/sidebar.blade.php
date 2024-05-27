@@ -4,9 +4,9 @@
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
             <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-music"></i>
+                <img src="{{ asset('assets/images/logo.png') }}" style="width: 50px; height: 50px;" class="rounded-circle img-thumbnail" alt="">
             </div>
-            <div class="sidebar-brand-text mx-3"> Music<sup>instrument</sup></div>
+            <div class="sidebar-brand-text mx-2"> M<sup class="text-warning">instrument</sup></div>
         </a>
 
         <!-- Divider -->

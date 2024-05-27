@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="icon" href="{{ asset('assets/images/title.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/png">
     <title>MusicallInstrument | @yield('title')</title>
 
 </head>

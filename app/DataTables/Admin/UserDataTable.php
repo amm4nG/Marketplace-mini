@@ -1,12 +1,11 @@
 <?php
 
-namespace App\DataTables\Seller;
+namespace App\DataTables\Admin;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
@@ -22,7 +21,7 @@ class UserDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->addColumn('action', function (User $user) {
-                return view('seller.users.action', ['user' => $user]);
+                return view('admin.users.action', ['user' => $user]);
             })
             ->setRowId('id');
     }

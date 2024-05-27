@@ -7,7 +7,7 @@ use App\Http\Controllers\Seller\DashboardController;
 use App\Http\Controllers\Seller\InstrumentController;
 use App\Http\Controllers\Seller\InstrumentImageController;
 use App\Http\Controllers\Seller\SlideController;
-use App\Http\Controllers\Seller\UserController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
