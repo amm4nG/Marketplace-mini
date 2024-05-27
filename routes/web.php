@@ -45,8 +45,3 @@ Route::group(['middleware' => ['role:admin|seller', 'auth']], function () {
 });
 
 Route::resource('users', UserController::class)->middleware(['auth', 'role:admin']);
-
-Route::get('generate', function () {
-    \Illuminate\Support\Facades\Artisan::symlink('storage:link');
-    echo 'okelah';
-});
