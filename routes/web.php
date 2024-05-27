@@ -25,11 +25,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/login', [LoginController::class, 'formLogin'])->name('login')->middleware('guest');
+Route::get('/login', [LoginController::class, 'formLogin'])
+    ->name('login')
+    ->middleware('guest');
 Route::post('/validation', [LoginController::class, 'validationUser'])->name('validation.user');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/register', [RegisterController::class, 'formRegister'])->name('register')->middleware('guest');
+Route::get('/register', [RegisterController::class, 'formRegister'])
+    ->name('register')
+    ->middleware('guest');
 Route::post('/create/user', [RegisterController::class, 'store'])->name('register.user');
 
 Route::group(['middleware' => ['role:admin|seller', 'auth']], function () {
@@ -41,3 +45,8 @@ Route::group(['middleware' => ['role:admin|seller', 'auth']], function () {
 });
 
 Route::resource('users', UserController::class)->middleware(['auth', 'role:admin']);
+
+Route::get('generate', function () {
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
+    echo 'okelah';
+});
