@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary p-3">
     <div class="container-fluid">
-        <a class="navbar-brand fs-4 text-light fw-bold" href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" class="rounded-circle img-thumbnail" style="width: 60px; height: 60px;" alt=""> Musicall<span class="text-warning">Instrument</span></a>
+        <a class="navbar-brand fs-4 text-light fw-bold" href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" class="rounded-circle img-thumbnail" style="width: 60px; height: 60px;" alt=""> Musicall<span class="">Instrument</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><i class="fas fa-music"></i> MusicallInstrument
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><i class="fas fa-music"></i> Musicall<span class="text-warning">Instrument</span>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
