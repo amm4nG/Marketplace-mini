@@ -108,7 +108,7 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => 500,
-                'errors' => $th->getMessage(),
+                'errors' => $th->getMessage()
             ]);
         }
     }
