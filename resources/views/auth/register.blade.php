@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('title')
-    BOOKStore | Daftar
+    Page Register
 @endsection
 @section('content')
     <div class="container position-absolute top-50 start-50 translate-middle">
@@ -10,14 +10,13 @@
                     @csrf
                     <div class="card p-3 shadow-lg">
                         <h2 class="text-center mb-4 mt-2 text-primary fw-bold"><a href="{{ route('home') }}"
-                                class="nav-link"><img src="{{ asset('assets/images/title.png') }}"
-                                    style="width: 55px; height: 55px;" class="img-thumbnail rounded-circle" alt="">
-                                BOOKStore</a></h2>
+                                class="nav-link">
+                                MusicInstrument</a></h2>
                         <div class="form-floating mb-3">
                             <input type="username" name="username"
                                 class="form-control @error('username') is-invalid
                             @enderror"
-                                id="floatingInput" placeholder="namexxx">
+                                id="floatingInput" value="{{ old('username') }}" placeholder="namexxx">
                             @error('username')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -27,7 +26,7 @@
                             <input type="email" name="email"
                                 class="form-control @error('email') is-invalid
                             @enderror"
-                                id="floatingInput" placeholder="name@gmail.com">
+                                id="floatingInput" value="{{ old('email') }}" placeholder="name@gmail.com">
                             @error('email')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -44,12 +43,15 @@
                             <label for="floatingPassword">Password</label>
                         </div>
                         <button type="submit" class="btn btn-primary mt-4 mb-3 p-3"><i class="fal fa-user-plus"></i>
-                            Daftar</button>
-                        <p class="text-center">Sudah mendaftar? <a href="{{ route('login') }}">Masuk</a></p>
+                            Register</button>
+                        <p class="text-center">Have Registered? <a href="{{ route('login') }}">Login</a></p>
                         <div class="divider "><span>atau</span></div>
-                        <a href="" class="btn btn-light p-3 mb-3"><i class="fab fa-google-plus-g text-danger"></i>
-                            Daftar
-                            dengan Google
+                        <a href="" class="btn btn-light p-3 mb-3"><img
+                                src="{{ asset('assets/images/icon/google-removebg-preview.png') }}"
+                                style="width: 35px; height: 35px;" alt="">
+                            <span class="mt-1">
+                                Register With Google
+                            </span>
                         </a>
                     </div>
                 </form>

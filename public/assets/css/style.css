@@ -33,13 +33,25 @@
     color: #38527E !important;
 }
 
+.text-secondary {
+    color: #DDDDDD !important;
+}
+
 @media (max-width: 700px){
     .slide-cover {
         height: 250px;
         object-fit: cover;
+        transform: scale(2);
+        object-fit: contain;
+    } 
+
+    .text-white {
+        color: #2f4874 !important;
     }
 
-    
+    .text-secondary {
+        color: rgba(0, 0, 0, 0.528) !important;
+    }
 }
 
 .img-cover {
@@ -58,6 +70,3 @@
     background-color: white;
 }
 
-.text-secondary {
-    color: #DDDDDD !important;
-}

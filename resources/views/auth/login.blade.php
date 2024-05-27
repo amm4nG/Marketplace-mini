@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('title')
-    BOOKStore | Masuk
+    Page Login
 @endsection
 @section('content')
     <div class="container position-absolute top-50 start-50 translate-middle">
@@ -10,9 +10,7 @@
                     <div class="card p-3 shadow-lg">
                         @csrf
                         <h2 class="text-center mb-4 mt-2 text-primary fw-bold"><a href="{{ route('home') }}"
-                                class="nav-link"><img src="{{ asset('assets/images/title.png') }}"
-                                    style="width: 55px; height: 55px;" class="img-thumbnail rounded-circle" alt="">
-                                BOOKStore</a></h2>
+                                class="nav-link">MusicInstrument</a></h2>
                         @if ($errors->has('message'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ $errors->first('message') }}
@@ -43,12 +41,16 @@
                             <label for="floatingPassword">Password</label>
                         </div>
                         <button type="submit" class="btn btn-primary mt-4 mb-3 p-3"><i class="fal fa-sign-in"></i>
-                            Masuk</button>
-                        <p class="text-center">Belum mendaftar? <a href="{{ route('register') }}">Daftar</a></p>
+                            Login</button>
+                        <p class="text-center">Not Registered? <a href="{{ route('register') }}">Register</a></p>
                         <div class="divider "><span>atau</span></div>
-                        <a href="" class="btn btn-light p-3 mb-3"><i class="fab fa-google-plus-g text-danger"></i>
-                            Masuk
-                            dengan Google</a>
+                        <a href="" class="btn btn-light p-3 mb-3"><img
+                                src="{{ asset('assets/images/icon/google-removebg-preview.png') }}"
+                                style="width: 35px; height: 35px;" alt="">
+                            <span class="mt-1">
+                                Login With Google
+                            </span>
+                        </a>
                     </div>
                 </form>
             </div>

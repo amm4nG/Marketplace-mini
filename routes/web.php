@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Seller\CategoryController;
+use App\Http\Controllers\Seller\DashboardController;
+use App\Http\Controllers\Seller\InstrumentController;
+use App\Http\Controllers\Seller\InstrumentImageController;
+use App\Http\Controllers\Seller\SlideController;
+use App\Http\Controllers\Seller\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,12 +27,17 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'formLogin'])->name('login')->middleware('guest');
 Route::post('/validation', [LoginController::class, 'validationUser'])->name('validation.user');
-
-Route::group(['middleware' => ['role:seller', 'auth']], function () {
-    Route::get('/dashboard', function(){
-        return 'hello world';
-    })->name('dashboard');
-});
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'formRegister'])->name('register')->middleware('guest');
 Route::post('/create/user', [RegisterController::class, 'store'])->name('register.user');
+
+Route::group(['middleware' => ['role:admin|seller', 'auth']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('categories', CategoryController::class);
+    Route::resource('slides', SlideController::class);
+    Route::resource('instruments', InstrumentController::class);
+    Route::resource('images', InstrumentImageController::class);
+});
+
+Route::resource('users', UserController::class)->middleware(['auth', 'role:admin']);

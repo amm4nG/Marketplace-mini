@@ -14,12 +14,19 @@ class CheckRoleUser
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role): Response
-    { 
+    public function handle(Request $request, Closure $next, $roles): Response
+    {
         $user = Auth::user();
-        if ($user->role == $role) {
+
+        // Memisahkan string roles menjadi array
+        $rolesArray = explode('|', $roles);
+
+        // Memeriksa apakah user memiliki salah satu dari peran yang diberikan
+        if (in_array($user->role, $rolesArray)) {
             return $next($request);
         }
+
+        // Jika tidak memiliki peran yang diperlukan, munculkan 404
         abort(404);
     }
 }
