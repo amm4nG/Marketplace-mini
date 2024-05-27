@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary p-3">
     <div class="container-fluid">
-        <a class="navbar-brand fs-4 text-light fw-bold" href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" class="rounded-circle img-thumbnail" style="width: 60px; height: 60px;" alt=""> Musicall<span class="">Instrument</span></a>
+        <a class="navbar-brand fs-4 text-light fw-bold" href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" class="rounded-circle img-thumbnail" style="width: 60px; height: 60px;" alt=""> Musicall<span class="text-warning">Instrument</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
