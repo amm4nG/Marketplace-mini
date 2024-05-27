@@ -8,32 +8,20 @@
             <div class="col-md-12">
                 <div id="carouselExampleIndicators" class="carousel slide">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-                            aria-label="Slide 4"></button>
+                        @foreach ($slides as $index => $slide)
+                            <button type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"
+                                aria-current="{{ $index == 0 ? 'true' : 'false' }}"
+                                aria-label="Slide {{ $index + 1 }}"></button>
+                        @endforeach
                     </div>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{{ asset('assets/images/slideshow/slide-show-1.jpg') }}"
-                                class="d-block w-100 slide-cover" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('assets/images/slideshow/slide-show-2.jpg') }}"
-                                class="d-block w-100 slide-cover" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('assets/images/slideshow/slide-show-4.jpg') }}"
-                                class="d-block w-100 slide-cover" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('assets/images/slideshow/slide-show-5.jpg') }}"
-                                class="d-block w-100 slide-cover" alt="...">
-                        </div>
+                        @foreach ($slides as $index => $slide)
+                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                <img src="{{ asset('storage/' . $slide->url_image) }}" class="d-block w-100"
+                                    alt="Slide {{ $index + 1 }}">
+                            </div>
+                        @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">
@@ -114,7 +102,8 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-3">
-                <a href="" class="text-center btn btn-light form-control rounded-5 mt-3">Tampilkan Semua <i class="fal fa-arrow-right fa-sm"></i></a>
+                <a href="" class="text-center btn btn-light form-control rounded-5 mt-3">Tampilkan Semua <i
+                        class="fal fa-arrow-right fa-sm"></i></a>
             </div>
         </div>
     </div>

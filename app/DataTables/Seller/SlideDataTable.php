@@ -26,6 +26,11 @@ class SlideDataTable extends DataTable
             ->addColumn('action', function (Slide $slide) {
                 return view('seller.slides.action', ['slide' => $slide]);
             })
+            ->addColumn('image', function (Slide $image) {
+                $imagePath = "/storage/$image->url_image";
+                return '<img src="' . $imagePath . '" style="width:200px; heigth:auto" class="img-fluid" />';
+            })
+            ->rawColumns(['image', 'action'])
             ->setRowId('id');
     }
 
@@ -50,7 +55,10 @@ class SlideDataTable extends DataTable
      */
     public function getColumns(): array
     {
-        return [Column::computed('DT_RowIndex')->title('No.')->addClass('text-center'), Column::computed('action')->addClass('text-center'), Column::make('order')->addClass('text-center')];
+        return [Column::computed('DT_RowIndex')->title('No.')->addClass('text-center align-middle'),
+        Column::computed('action')->addClass('text-center align-middle'),
+        Column::make('order')->addClass('text-center align-middle'), Column::make('image')->addClass('text-center
+        align-middle')];
     }
 
     /**

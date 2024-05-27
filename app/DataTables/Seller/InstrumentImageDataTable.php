@@ -33,7 +33,7 @@ class InstrumentImageDataTable extends DataTable
             ->addIndexColumn()
             ->addColumn('image', function (InstrumentImage $image) {
                 $imagePath = "/storage/$image->image";
-                return '<img src="' . $imagePath . '"  class="img-fluid" />';
+                return '<img src="' . $imagePath . '" style="width:200px; heigth:auto" class="img-fluid" />';
             })
             ->addColumn('action', function (InstrumentImage $image) {
                 return view('seller.instruments.images.action', ['images' => $image]);

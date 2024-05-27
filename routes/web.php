@@ -8,6 +8,7 @@ use App\Http\Controllers\Seller\InstrumentController;
 use App\Http\Controllers\Seller\InstrumentImageController;
 use App\Http\Controllers\Seller\SlideController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [LoginController::class, 'formLogin'])
     ->name('login')

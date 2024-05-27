@@ -30,7 +30,7 @@ class InstrumentController extends Controller
                 'price_new' => ['required', 'numeric', 'min:0', 'regex:/^\d{1,15}(\.\d{1,2})?$/'],
                 'description_new' => 'nullable',
                 'images_new' => 'required',
-                'images_new.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+                'images_new.*' => 'image|mimes:jpeg,png,jpg',
             ],
             [
                 'name_instrument_new.required' => 'The name instrument field is required',
