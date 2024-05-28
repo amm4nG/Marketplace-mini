@@ -8,6 +8,7 @@ use App\Http\Controllers\Seller\InstrumentController;
 use App\Http\Controllers\Seller\InstrumentImageController;
 use App\Http\Controllers\Seller\SlideController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Buyer\InstrumentController as BuyerInstrumentController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,12 +36,16 @@ Route::get('/register', [RegisterController::class, 'formRegister'])
     ->middleware('guest');
 Route::post('/create/user', [RegisterController::class, 'store'])->name('register.user');
 
-Route::group(['middleware' => ['role:admin|seller', 'auth']], function () {
+Route::group(['middleware' => ['role:admin|seller', 'auth'], 'prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('categories', CategoryController::class);
     Route::resource('slides', SlideController::class);
     Route::resource('instruments', InstrumentController::class);
     Route::resource('images', InstrumentImageController::class);
+});
+
+Route::group(['middleware' => 'auth', 'prefix' => '/', 'as' => '/.'], function () {
+    Route::resource('instruments', BuyerInstrumentController::class);
 });
 
 Route::resource('users', UserController::class)->middleware(['auth', 'role:admin']);

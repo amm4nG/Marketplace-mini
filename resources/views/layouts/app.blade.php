@@ -15,6 +15,7 @@
 <body>
     @include('layouts.navbar')
     @yield('content')
+    @include('layouts.footer')
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>
 </body>

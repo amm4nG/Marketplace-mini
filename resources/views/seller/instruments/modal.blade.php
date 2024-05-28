@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="row g-3 ajax-form" data-url="{{ route('instruments.store') }}" method="post" enctype="multipart/form-data">
+                <form class="row g-3 ajax-form" data-url="{{ route('seller.instruments.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12">
                         <div class="row">

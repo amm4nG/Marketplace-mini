@@ -13,8 +13,8 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dashboard') }}">
+        <li class="nav-item {{ Request::is('seller/dashboard') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('seller.dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -26,13 +26,13 @@
         <div class="sidebar-heading">
             menu
         </div>
-        <li class="nav-item {{ Request::is('instruments') || Request::is('images*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('instruments.index') }}">
+        <li class="nav-item {{ Request::is('seller/instruments') || Request::is('seller/images*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('seller.instruments.index') }}">
                 <i class="fas fa-fw fa-music"></i>
                 <span>Instruments</span></a>
         </li>
-        <li class="nav-item {{ Request::is('categories') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('categories.index') }}">
+        <li class="nav-item {{ Request::is('seller/categories') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('seller.categories.index') }}">
                 <i class="fas fa-fw fa-tag"></i>
                 <span>Categories</span></a>
         </li>
@@ -47,8 +47,8 @@
         <div class="sidebar-heading">
             settings
         </div>
-        <li class="nav-item {{ Request::is('slides') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('slides.index') }}">
+        <li class="nav-item {{ Request::is('seller/slides') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('seller.slides.index') }}">
                 <i class="fas fa-fw fa-image"></i>
                 <span>Slide Show</span></a>
         </li>

@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="row g-3 ajax-form" data-url="{{ route('categories.store') }}" method="post">
+                <form class="row g-3 ajax-form" data-url="{{ route('seller.categories.store') }}" method="post">
                     @csrf
                     <div class="col-md-12">
                         <label for="name_category_new" class="form-label">Name Category</label>

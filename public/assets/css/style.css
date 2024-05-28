@@ -37,6 +37,10 @@
     color: #DDDDDD !important;
 }
 
+.bg-primary {
+    background-color: #38527E !important;
+}
+
 @media (max-width: 700px){
     .slide-cover {
         height: 250px;

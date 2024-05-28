@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
             <div class="col-md-11">
                 <div class="card p-4 mb-4">
-                    <h4 class="mb-4 text-capitalize text-secondary"><a href="{{ route('instruments.index') }}"><i
+                    <h4 class="mb-4 text-capitalize text-secondary"><a href="{{ route('seller.instruments.index') }}"><i
                                 class="fas fa-arrow-left text-secondary fa"></i></a> Manage Instrument Images -
                         {{ $instrument->name_instrument }}</h4>
                     <a href="#" data-toggle="modal" data-target="#new-image" class="btn btn-primary mb-4 text-center"

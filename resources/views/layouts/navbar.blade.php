@@ -15,12 +15,12 @@
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
                         <a class="nav-link fs-6 {{ Request::is('/') ? 'text-white' : 'text-secondary' }}"
-                            aria-current="page" href=""><i class="fas fa-home-alt"></i> Home</a>
+                            aria-current="page" href="{{ route('home') }}"><i class="fal fa-home-lg-alt"></i> Home</a>
                     </li>
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link fs-6 {{ Request::is('carts') ? 'text-white' : 'text-secondary' }}"
-                                aria-current="page" href=""><i class="fal fa-music"></i> Instruments</a>
+                            <a class="nav-link fs-6 {{ Request::is('instruments') ? 'text-white' : 'text-secondary' }}"
+                                aria-current="page" href="{{ route('/.instruments.index') }}"><i class="fal fa-music"></i> Instruments</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fs-6 {{ Request::is('carts') ? 'text-white' : 'text-secondary' }}"
@@ -28,7 +28,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fs-6 {{ Request::is('histories') ? 'text-white' : 'text-secondary' }}"
-                                aria-current="page" href=""><i class="fal fa-history"></i> History</a>
+                                aria-current="page" href=""><i class="fal fa-clipboard-list-check"></i> History</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle fs-6 {{ Request::is('profile') ? 'text-white' : 'text-secondary' }}"
                                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,11 +36,11 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @if (Auth::user()->role === 'admin' || Auth::user()->role === 'seller')
-                                    <li><a class="dropdown-item fs-6" href="{{ route('dashboard') }}"><i
+                                    <li><a class="dropdown-item fs-6" href="{{ route('seller.dashboard') }}"><i
                                                 class="fal fa-tachometer-alt"></i>
                                             Dashboard</a></li>
                                 @else
-                                    <li><a class="dropdown-item fs-6" href="#"><i class="fal fa-user"></i> Profile</a></li>
+                                    <li><a class="dropdown-item fs-6" href="#"><i class="far fa-user-circle"></i> Profile</a></li>
                                 @endif
                                 <li>
                                     <hr class="dropdown-divider">
