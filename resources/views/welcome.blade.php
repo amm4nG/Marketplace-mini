@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid mt-4 mb-5">
+    <div class="container-fluid mt-4 p-4">
         <div class="row justify-content-center">
             @foreach ($instruments as $instrument)
                 <div class="col-md-2 mb-3">
