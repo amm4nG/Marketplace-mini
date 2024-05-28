@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="container-fluid footer-bottom clearfix">
-        <div class="copyright">
+        <div class="copyright mb-4">
             &copy; Copyright <strong><span>Arman</span></strong>. All Rights Reserved
         </div>
     </div>

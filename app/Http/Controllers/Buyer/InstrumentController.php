@@ -12,4 +12,9 @@ class InstrumentController extends Controller
         $instruments = Instrument::all();
         return view('buyer.instruments.index', compact('instruments'));
     }
+
+    public function show($id){
+        $instrument = Instrument::findOrFail($id);
+        return view('buyer.instruments.show', compact('instrument'));
+    }
 }
