@@ -19,7 +19,7 @@
                     </li>
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link fs-6 {{ Request::is('instruments') ? 'text-white' : 'text-secondary' }}"
+                            <a class="nav-link fs-6 {{ Request::is('instruments*') ? 'text-white' : 'text-secondary' }}"
                                 aria-current="page" href="{{ route('/.instruments.index') }}"><i class="fal fa-music"></i> Instruments</a>
                         </li>
                         <li class="nav-item">
