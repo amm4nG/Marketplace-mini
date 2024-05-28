@@ -47,8 +47,9 @@
                         <div class="card-footer text-center">
                             <h6 class="mt-2">{{ $instrument->name_instrument }}</h6>
                             <h6>Rp. {{ number_format($instrument->price) }}</h6>
-                            <p>{{ Str::limit($instrument->description, 20, '...') }}</p>
-                                <a href="" class="btn btn-primary mb-2 rounded-5 p-3"><i class="fas fa-cart-plus"></i> Add to cart</a>
+                            <p>{{ ($instrument->description) ? Str::limit($instrument->description, 20, '...') : '-' }}</p>
+                            <a href="" class="btn btn-primary mb-2 rounded-5 p-3"><i class="fas fa-cart-plus"></i>
+                                Add to cart</a>
                         </div>
                     </div>
                 </div>
