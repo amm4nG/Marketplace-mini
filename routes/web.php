@@ -44,7 +44,7 @@ Route::group(['middleware' => ['role:admin|seller', 'auth'], 'prefix' => 'seller
     Route::resource('images', InstrumentImageController::class);
 });
 
-Route::group(['middleware' => 'auth', 'prefix' => '/', 'as' => '/.'], function () {
+Route::group(['prefix' => '/', 'as' => '/.'], function () {
     Route::resource('instruments', BuyerInstrumentController::class);
 });
 

@@ -3,8 +3,9 @@
     Instruments
 @endsection
 @section('content')
-    <div class="container-fluid mt-4 p-3">
+    <div class="container-fluid mt-3 p-3">
         <div class="row justify-content-center">
+            <h2 class="text-primary mb-4"><i class="fas fa-music"></i> Instruments Music</h2>
             @forelse ($instruments as $instrument)
             <div class="col-md-2 mb-3">
                 <div class="card shadow text-primary rounded-2">

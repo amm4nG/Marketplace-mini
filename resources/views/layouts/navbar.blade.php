@@ -17,11 +17,11 @@
                         <a class="nav-link fs-6 {{ Request::is('/') ? 'text-white' : 'text-secondary' }}"
                             aria-current="page" href="{{ route('home') }}"><i class="fal fa-home-lg-alt"></i> Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-6 {{ Request::is('instruments*') ? 'text-white' : 'text-secondary' }}"
+                            aria-current="page" href="{{ route('/.instruments.index') }}"><i class="fal fa-music"></i> Instruments</a>
+                    </li>
                     @auth
-                        <li class="nav-item">
-                            <a class="nav-link fs-6 {{ Request::is('instruments*') ? 'text-white' : 'text-secondary' }}"
-                                aria-current="page" href="{{ route('/.instruments.index') }}"><i class="fal fa-music"></i> Instruments</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link fs-6 {{ Request::is('carts') ? 'text-white' : 'text-secondary' }}"
                                 aria-current="page" href=""><i class="fal fa-shopping-cart"></i> Carts</a>
