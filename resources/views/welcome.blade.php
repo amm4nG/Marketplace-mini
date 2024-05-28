@@ -37,11 +37,11 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid mt-4 p-4">
+    <div class="container-fluid mt-4 p-2">
         <div class="row justify-content-center">
             @foreach ($instruments as $instrument)
                 <div class="col-md-2 mb-3">
-                    <div class="card shadow text-primary rounded-4">
+                    <div class="card shadow text-primary rounded-2">
                         <img src="{{ asset('storage/' . $instrument->instrumentImages->first()->image) }}" class="img-cover"
                             alt="">
                         <div class="card-footer text-center">
