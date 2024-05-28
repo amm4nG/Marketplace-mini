@@ -24,7 +24,7 @@
                     @auth
                         <li class="nav-item">
                             <a class="nav-link fs-6 {{ Request::is('carts') ? 'text-white' : 'text-secondary' }}"
-                                aria-current="page" href=""><i class="fal fa-shopping-cart"></i> Carts</a>
+                                aria-current="page" href="{{ route('carts.index') }}"><i class="fal fa-shopping-cart"></i> Carts</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fs-6 {{ Request::is('histories') ? 'text-white' : 'text-secondary' }}"

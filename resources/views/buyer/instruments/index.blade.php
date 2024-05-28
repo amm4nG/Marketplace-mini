@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Instruments
+    Instrument
 @endsection
 @section('content')
     <div class="container-fluid mt-3 p-3">

@@ -51,7 +51,8 @@
                             <a href="" class="btn btn-primary mb-2 rounded-5 p-2 ps-3 pe-3"><i
                                     class="fas fa-cart-plus"></i>
                                 Add to cart</a>
-                            <a href="" class="btn btn-secondary mb-2 rounded-5 p-2 ps-3 pe-3">Detail <i
+                            <a href="{{ route('/.instruments.show', $instrument->id) }}"
+                                class="btn btn-secondary mb-2 rounded-5 p-2 ps-3 pe-3">Detail <i
                                     class="fas fa-arrow-right"></i>
                             </a>
                         </div>
