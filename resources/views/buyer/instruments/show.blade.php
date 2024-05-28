@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card p-3">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-2 mb-3">
                             <div id="carouselExampleIndicators" class="carousel slide">
                                 <div class="carousel-indicators">
                                     @foreach ($instrument->instrumentImages as $index => $image)
