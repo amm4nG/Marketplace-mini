@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         form.addEventListener('submit', function (event) {
             event.preventDefault();
             submitButton.disabled = true;
-
+            
             var url = form.getAttribute('data-url');
             var formData = new FormData(form);
             fetch(url, {

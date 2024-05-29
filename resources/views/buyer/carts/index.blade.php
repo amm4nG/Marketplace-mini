@@ -15,6 +15,11 @@
                     <div class="table-responsive">
                         {{ $dataTable->table(['class' => 'table table-striped table-sm']) }}
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="" id="checkout" class="disabled btn btn-primary mt-4 float-end">Checkout</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -22,4 +27,37 @@
 @endsection
 @push('scripts')
     {{ $dataTable->scripts() }}
+    <script>
+        $(document).ready(function() {
+            $('#select-all').on('click', function() {
+                var rows = $('#cart-table').DataTable().rows({
+                    'search': 'applied'
+                }).nodes();
+                var isChecked = this.checked;
+                $('input[type="checkbox"]', rows).prop('checked', isChecked);
+                displayCheckedValues();
+            });
+
+            $('#cart-table tbody').on('change', 'input[type="checkbox"]', function() {
+                displayCheckedValues();
+            });
+
+            function displayCheckedValues() {
+                var checkedValues = [];
+                $('#cart-table tbody input[type="checkbox"]:checked').each(function() {
+                    var instrumentId = $(this).val().split(',')[0];
+                    var quantity = $(this).val().split(',')[1];
+                    checkedValues.push({
+                        instrumentId: instrumentId,
+                        quantity: quantity
+                    });
+                });
+                if (checkedValues.length > 0) {
+                    $('#checkout').removeClass("disabled");
+                }else{
+                    $('#checkout').addClass("disabled");
+                }
+            }
+        });
+    </script>
 @endpush

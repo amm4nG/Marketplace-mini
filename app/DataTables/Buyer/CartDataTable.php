@@ -21,7 +21,23 @@ class CartDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        return (new EloquentDataTable($query))->addIndexColumn()->addColumn('action', 'cart.action')->setRowId('id');
+        return (new EloquentDataTable($query))
+            ->addColumn('checkbox', function (Cart $cart) {
+                return '<input type="checkbox" class="row-checkbox"
+                value="' .
+                    $cart->instrument_id .
+                    ',' .
+                    $cart->quantity .
+                    '">';
+            })
+            ->addColumn('action', function (Cart $cart) {
+                return view('buyer.carts.action', ['cart' => $cart]);
+            })
+            ->addColumn('name_instrument', function (Cart $cart) {
+                return $cart->instrument->name_instrument;
+            })
+            ->rawColumns(['checkbox', 'action']) // Ensure raw HTML is rendered
+            ->setRowId('id');
     }
 
     /**
@@ -29,7 +45,7 @@ class CartDataTable extends DataTable
      */
     public function query(Cart $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('instrument');
     }
 
     /**
@@ -37,17 +53,7 @@ class CartDataTable extends DataTable
      */
     public function html(): HtmlBuilder
     {
-        return $this->builder()
-            ->setTableId('cart-table')
-            ->columns($this->getColumns())
-            ->minifiedAjax()
-            ->setTableHeadClass(
-                'text-primary
-                fw-bold text-uppercase',
-            )
-            ->orderBy(1)
-            ->select(false)
-            ->buttons([]);
+        return $this->builder()->setTableId('cart-table')->columns($this->getColumns())->minifiedAjax()->setTableHeadClass('text-primary fw-bold text-uppercase')->orderBy(1)->select(false)->buttons([]);
     }
 
     /**
@@ -55,7 +61,7 @@ class CartDataTable extends DataTable
      */
     public function getColumns(): array
     {
-        return [Column::computed('DT_RowIndex')->title('No.')->addClass('text-center'), Column::computed('action')->addClass('text-center'), Column::make('name_instrument'), Column::make('quantity')->addClass('text-center')];
+        return [Column::computed('checkbox')->title('<input type="checkbox" id="select-all" />'), Column::computed('action')->addClass('text-center'), Column::computed('name_instrument')->addClass('text-center'), Column::make('quantity')->addClass('text-center')];
     }
 
     /**
