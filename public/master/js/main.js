@@ -101,13 +101,22 @@ document.addEventListener('DOMContentLoaded', function () {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     if (data.status === 422) {
                         submitButton.disabled = false;
                         form.querySelectorAll('.is-invalid').forEach(function (element) {
                             element.classList.remove('is-invalid');
                         });
                         Object.keys(data.errors).forEach(function (key) {
+                            if (key === 'instrumentAlready') {
+                                $('.hide').click();
+                                Swal.fire({
+                                    text: data.errors[key][0],
+                                    icon: "info",
+                                    isConfirmed: true,
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false
+                                })
+                            }
                             var input = form.querySelector('[name="' + key + '"]');
                             if (!input) {
                                 input = form.querySelector('[name="' + key + '[]"]');

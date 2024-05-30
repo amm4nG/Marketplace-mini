@@ -6,10 +6,7 @@ use App\Models\Cart;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Button;
-use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
+use Yajra\DataTables\Html\Column; 
 use Yajra\DataTables\Services\DataTable;
 
 class CartDataTable extends DataTable
@@ -28,6 +25,8 @@ class CartDataTable extends DataTable
                     $cart->instrument_id .
                     ',' .
                     $cart->quantity .
+                    ',' .
+                    $cart->quantity * $cart->instrument->price .
                     '">';
             })
             ->addColumn('action', function (Cart $cart) {
@@ -35,6 +34,12 @@ class CartDataTable extends DataTable
             })
             ->addColumn('name_instrument', function (Cart $cart) {
                 return $cart->instrument->name_instrument;
+            })
+            ->addColumn('unit_price', function (Cart $cart) {
+                return number_format($cart->instrument->price);
+            })
+            ->addColumn('price', function (Cart $cart) {
+                return number_format($cart->quantity * $cart->instrument->price);
             })
             ->rawColumns(['checkbox', 'action']) // Ensure raw HTML is rendered
             ->setRowId('id');
@@ -61,7 +66,11 @@ class CartDataTable extends DataTable
      */
     public function getColumns(): array
     {
-        return [Column::computed('checkbox')->title('<input type="checkbox" id="select-all" />'), Column::computed('action')->addClass('text-center'), Column::computed('name_instrument')->addClass('text-center'), Column::make('quantity')->addClass('text-center')];
+        return [Column::computed('checkbox')->title('<input type="checkbox" id="select-all" />'),
+        Column::computed('action')->addClass('text-center'),
+        Column::computed('name_instrument')->addClass('text-center'), Column::make('quantity')->addClass('text-center'),
+        Column::computed('unit_price')->addClass('text-center'),
+        Column::make('price')->title('total  price')->addClass('text-center')];
     }
 
     /**
