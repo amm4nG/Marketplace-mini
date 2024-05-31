@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
     <title>MusicallInstrument | @yield('title')</title>
 
 </head>
+
 <body>
     @include('layouts.navbar')
     @yield('content')
@@ -24,6 +26,16 @@
     <script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>
     <script src="{{ asset('master/datatables/datatable.js') }}"></script>
     <script src="{{ asset('master/js/main.js') }}"></script>
+    @if (session('message'))
+        <script>
+            Swal.fire({
+                title: "Good job!",
+                text: "{{ session('message') }}",
+                icon: "success"
+            });
+        </script>
+    @endif
     @stack('scripts')
 </body>
+
 </html>

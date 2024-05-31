@@ -1,3 +1,3 @@
-<a href="" class="btn btn-primary btn-sm mb-1" style="width: 5rem "><i class="fal fa-upload"></i> Pay</a>
+<a href="#" onclick="store(this)" data-payment_id="{{ $order->payment->id }}" data-url="{{ route('payment.store') }}" data-order_id="{{ $order->id }}" data-bs-toggle="modal" data-bs-target="#pay" class="btn btn-primary btn-sm mb-1" style="width: 5rem "><i class="fal fa-upload"></i> Pay</a>
 <a href="" class="btn btn-secondary btn-sm mb-1" style="width: 5rem "><i class="fal fa-download"></i> Print</a>
-<a href="" class="btn btn-success btn-sm mb-1" style="width: 5rem "><i class="fal fa-eye"></i> Detail</a>
+<a href="" class="btn btn-success btn-sm mb-1" style="width: 5rem"><i class="fal fa-eye"></i> Detail</a>

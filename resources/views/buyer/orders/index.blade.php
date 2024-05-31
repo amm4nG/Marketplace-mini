@@ -27,6 +27,7 @@
             </div>
         </div>
     </div>
+    @include('buyer.orders.modal')
 @endsection
 @push('scripts')
     {{ $dataTable->scripts() }}

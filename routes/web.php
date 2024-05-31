@@ -12,6 +12,7 @@ use App\Http\Controllers\Buyer\CartController;
 use App\Http\Controllers\Buyer\InstrumentController as BuyerInstrumentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Buyer\OrderController;
+use App\Http\Controllers\Buyer\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,3 +47,5 @@ Route::resource('profile', ProfileController::class)->middleware('auth');
 
 Route::get('orders', [OrderController::class, 'index'])->middleware('auth')->name('orders');
 Route::post('order/store', [OrderController::class, 'store'])->middleware('auth');
+
+Route::post('payment/store', [PaymentController::class, 'store'])->middleware('auth')->name('payment.store');

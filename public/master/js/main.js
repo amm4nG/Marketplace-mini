@@ -14,6 +14,21 @@ function confirmDeletion(id) {
     });
 }
 
+function store(element){
+    let modalId = element.getAttribute('data-bs-target').substring(1)
+    let url = element.getAttribute('data-url')
+    let modal = document.getElementById(modalId)
+    let form = modal.querySelector('form')
+    form.dataset.url = url
+
+    let input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'id';
+    input.id = 'id'
+    input.value = element.getAttribute('data-payment_id');
+    form.appendChild(input);
+}
+
 function edit(element) {
     var modalId = element.getAttribute('data-target').substring(1);
     var url = element.getAttribute('data-url');
@@ -80,7 +95,7 @@ function edit(element) {
             }
         })
     }
-} 
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     var forms = document.querySelectorAll('.ajax-form');
@@ -148,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
                         });
                     } else {
+                        console.log(data);
                         $('.hide').click();
                         Swal.fire({
                             title: "Good job!",
@@ -164,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 })
                 .catch(e => {
+                    submitButton.disabled = true;
                     console.log(e);
                 })
         });
