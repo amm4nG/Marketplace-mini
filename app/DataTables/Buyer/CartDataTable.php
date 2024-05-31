@@ -4,9 +4,10 @@ namespace App\DataTables\Buyer;
 
 use App\Models\Cart;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Column; 
+use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
 class CartDataTable extends DataTable
@@ -22,6 +23,8 @@ class CartDataTable extends DataTable
             ->addColumn('checkbox', function (Cart $cart) {
                 return '<input type="checkbox" class="row-checkbox"
                 value="' .
+                    $cart->id .
+                    ',' .
                     $cart->instrument_id .
                     ',' .
                     $cart->quantity .
@@ -50,7 +53,8 @@ class CartDataTable extends DataTable
      */
     public function query(Cart $model): QueryBuilder
     {
-        return $model->newQuery()->with('instrument');
+        $query = $model->newQuery();
+        return $query->where('user_id', Auth::user()->id)->with('instrument');
     }
 
     /**
@@ -66,11 +70,7 @@ class CartDataTable extends DataTable
      */
     public function getColumns(): array
     {
-        return [Column::computed('checkbox')->title('<input type="checkbox" id="select-all" />'),
-        Column::computed('action')->addClass('text-center'),
-        Column::computed('name_instrument')->addClass('text-center'), Column::make('quantity')->addClass('text-center'),
-        Column::computed('unit_price')->addClass('text-center'),
-        Column::make('price')->title('total  price')->addClass('text-center')];
+        return [Column::computed('checkbox')->title('<input type="checkbox" id="select-all" />'), Column::computed('action')->addClass('text-center'), Column::computed('name_instrument')->addClass('text-center'), Column::make('quantity')->addClass('text-center'), Column::computed('unit_price')->addClass('text-center'), Column::make('price')->title('total  price')->addClass('text-center')];
     }
 
     /**

@@ -11,18 +11,9 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Buyer\CartController;
 use App\Http\Controllers\Buyer\InstrumentController as BuyerInstrumentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Buyer\OrderController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -51,3 +42,7 @@ Route::group(['prefix' => '/', 'as' => '/.'], function () {
     Route::resource('instruments', BuyerInstrumentController::class);
 });
 
+Route::resource('profile', ProfileController::class)->middleware('auth');
+
+Route::get('orders', [OrderController::class, 'index'])->middleware('auth')->name('orders');
+Route::post('order/store', [OrderController::class, 'store'])->middleware('auth');
