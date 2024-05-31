@@ -76,12 +76,12 @@ class OrderDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('DT_RowIndex')->title('No')->addClass('text-center'),
-            Column::computed('action')->addClass('text-center'), 
-            Column::make('price')->title('total price')->addClass('text-center'),
-            Column::make('status')->addClass('text-center'),
-            Column::make('paid_at')->addClass('text-center'),
-            Column::make('note')->addClass('text-center'),
+            Column::computed('DT_RowIndex')->title('No')->addClass('text-center align-middle'),
+            Column::computed('action')->addClass('text-center align-middle'),
+            Column::make('price')->title('total price')->addClass('text-center align-middle'),
+            Column::make('status')->addClass('text-center align-middle'),
+            Column::make('paid_at')->addClass('text-center align-middle'),
+            Column::make('note')->addClass('text-center align-middle'),
         ];
     }
 
