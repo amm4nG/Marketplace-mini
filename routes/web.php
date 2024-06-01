@@ -47,5 +47,6 @@ Route::resource('profile', ProfileController::class)->middleware('auth');
 
 Route::get('orders', [OrderController::class, 'index'])->middleware('auth')->name('orders');
 Route::post('order/store', [OrderController::class, 'store'])->middleware('auth');
+Route::get('order/detail/{id}', [OrderController::class, 'detail'])->middleware('auth');
 
 Route::post('payment/store', [PaymentController::class, 'store'])->middleware('auth')->name('payment.store');

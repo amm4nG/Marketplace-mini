@@ -39,7 +39,7 @@ class OrderDataTable extends DataTable
             ->rawColumns(['status'])
             ->addColumn('action', function (OrderInstrument $order) {
                 return view('buyer.orders.action', ['order' => $order]);
-            })
+            }) 
             ->setRowId('id');
     }
 

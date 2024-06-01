@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Buyer;
 use App\DataTables\Buyer\OrderDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Instrument;
 use App\Models\OrderDetail;
 use App\Models\OrderInstrument;
 use App\Models\Payment;
@@ -18,6 +19,7 @@ class OrderController extends Controller
     {
         return $dataTable->render('buyer.orders.index');
     }
+
     public function store(Request $request)
     {
         DB::beginTransaction();
@@ -42,6 +44,10 @@ class OrderController extends Controller
 
                 $cart = Cart::find($order['id']);
                 $cart->delete();
+
+                $instrument = Instrument::find($order['instrumentId']);
+                $instrument->stock = $instrument->stock - $order['quantity'];
+                $instrument->update();
             }
 
             $payment = new Payment();
@@ -56,6 +62,26 @@ class OrderController extends Controller
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
+            return response()->json([
+                'status' => 500,
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function detail($id)
+    {
+        try {
+            $instrument = OrderInstrument::find($id);
+            $orders = OrderDetail::where('order_id', $id)->with('instrument')->get();
+            return response()->json([
+                'status' => 200,
+                'data' => [
+                    'ordered_at' => $instrument->ordered_at,
+                    'instruments' => $orders
+                ],
+            ]);
+        } catch (\Throwable $th) {
             return response()->json([
                 'status' => 500,
                 'message' => $th->getMessage(),

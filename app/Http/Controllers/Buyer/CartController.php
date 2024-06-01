@@ -19,7 +19,7 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        $checkInstrument = Cart::where('instrument_id', $request->instrument_id)->first();
+        $checkInstrument = Cart::where('instrument_id', $request->instrument_id)->where('user_id', Auth::user()->id)->first();
         if ($checkInstrument) {
             return response()->json([
                 'status' => 422,

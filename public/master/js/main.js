@@ -29,6 +29,69 @@ function store(element){
     form.appendChild(input);
 }
 
+function detail(element){
+    let detail = document.getElementById('detail')
+    let orderId = element.getAttribute('data-order_id')
+    let name = element.getAttribute('data-name')
+    let address = element.getAttribute('data-address')
+    let amountPaid = parseFloat(element.getAttribute('data-amount_paid'))
+    let status = element.getAttribute('data-status')
+    let proofPayment = element.getAttribute('data-proof_payment')
+    let proofImage = ''
+    if (proofPayment) {
+        proofImage += `
+            <img src="storage/${proofPayment}" class="img-fluid" alt="">
+        `
+    }
+    fetch('order/detail/'+orderId, {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(res => {
+        let instrumentsHTML = '';
+        res.data.instruments.forEach(item => {
+            instrumentsHTML += `
+                <tr>
+                    <td>${item.instrument.name_instrument}</td>
+                    <td>${item.quantity}</td>
+                    <td>Rp. ${item.instrument.price.toLocaleString()}</td>
+                </tr>
+            `;
+        });
+        detail.innerHTML = `
+            <div class="container" style="margin-top: -20px;">
+                <div class="row">
+                    <div class="col-md-12">
+                    <p class="mt-3">Name : ${name}</p>
+                    <p style="margin-top: -14px;">Ordered at : ${res.data.ordered_at}</p>
+                    <p style="margin-top: -14px;">Shipping address : ${address}</p>
+                    <p style="margin-top: -14px;">Status : <span class="badge text-bg-info p-2">${status}</span></p>
+                    </div>
+                </div>
+            </div>  
+            <div class="table-responsive">
+                <table class="table table-sm table-borderless text-end">
+                    <thead>
+                        <tr>
+                            <th>Instrument</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${instrumentsHTML}
+                    </tbody>
+                </table>
+            </div>
+            <p class="float-end badge text-bg-info p-2">Total payment : Rp. ${amountPaid.toLocaleString()}</p>
+            ${proofImage}
+        `
+    })
+    .catch(e => {
+        console.log(e);
+    })
+}
+
 function edit(element) {
     var modalId = element.getAttribute('data-target').substring(1);
     var url = element.getAttribute('data-url');
