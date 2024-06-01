@@ -36,8 +36,8 @@
                 <i class="fas fa-fw fa-tag"></i>
                 <span>Categories</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="">
+        <li class="nav-item {{ Request::is('seller/orders*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('seller.orders.index') }}">
                 <i class="fas fa-fw fa-shopping-cart"></i>
                 <span>Orders</span></a>
         </li>

@@ -14,6 +14,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Buyer\OrderController;
 use App\Http\Controllers\Buyer\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Seller\OrderController as SellerOrderController;
+use App\Http\Controllers\Seller\PaymentController as SellerPaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -35,7 +37,10 @@ Route::group(['middleware' => ['role:admin|seller', 'auth'], 'prefix' => 'seller
     Route::resource('slides', SlideController::class);
     Route::resource('instruments', InstrumentController::class);
     Route::resource('images', InstrumentImageController::class);
+    Route::resource('orders', SellerOrderController::class);
+    Route::put('payment/approve/{id}', [SellerPaymentController::class, 'update'])->name('payment');
 });
+
 Route::resource('users', UserController::class)->middleware(['auth', 'role:admin']);
 
 Route::resource('carts', CartController::class)->middleware('auth');
@@ -45,7 +50,7 @@ Route::group(['prefix' => '/', 'as' => '/.'], function () {
 
 Route::resource('profile', ProfileController::class)->middleware('auth');
 
-Route::get('orders', [OrderController::class, 'index'])->middleware('auth')->name('orders');
+Route::get('order', [OrderController::class, 'index'])->middleware('auth')->name('order');
 Route::post('order/store', [OrderController::class, 'store'])->middleware('auth');
 Route::get('order/detail/{id}', [OrderController::class, 'detail'])->middleware('auth');
 

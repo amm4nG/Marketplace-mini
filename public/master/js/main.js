@@ -14,7 +14,27 @@ function confirmDeletion(id) {
     });
 }
 
-function store(element){
+function confirmPayment(element) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: btnText
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            let btnText = element.getAttribute('data-btn')
+            let note = document.getElementById('note').value
+            let status = element.getAttribute('data-status')
+            
+        }
+    });
+}
+
+function store(element) {
     let modalId = element.getAttribute('data-bs-target').substring(1)
     let url = element.getAttribute('data-url')
     let modal = document.getElementById(modalId)
@@ -29,7 +49,7 @@ function store(element){
     form.appendChild(input);
 }
 
-function detail(element){
+function detail(element) {
     let detail = document.getElementById('detail')
     let orderId = element.getAttribute('data-order_id')
     let name = element.getAttribute('data-name')
@@ -43,22 +63,22 @@ function detail(element){
             <img src="storage/${proofPayment}" class="img-fluid" alt="">
         `
     }
-    fetch('order/detail/'+orderId, {
+    fetch('order/detail/' + orderId, {
         method: 'GET'
     })
-    .then(response => response.json())
-    .then(res => {
-        let instrumentsHTML = '';
-        res.data.instruments.forEach(item => {
-            instrumentsHTML += `
+        .then(response => response.json())
+        .then(res => {
+            let instrumentsHTML = '';
+            res.data.instruments.forEach(item => {
+                instrumentsHTML += `
                 <tr>
                     <td>${item.instrument.name_instrument}</td>
                     <td>${item.quantity}</td>
                     <td>Rp. ${item.instrument.price.toLocaleString()}</td>
                 </tr>
             `;
-        });
-        detail.innerHTML = `
+            });
+            detail.innerHTML = `
             <div class="container" style="margin-top: -20px;">
                 <div class="row">
                     <div class="col-md-12">
@@ -86,13 +106,13 @@ function detail(element){
             <p class="float-end badge text-bg-info p-2">Total payment : Rp. ${amountPaid.toLocaleString()}</p>
             ${proofImage}
         `
-    })
-    .catch(e => {
-        console.log(e);
-    })
+        })
+        .catch(e => {
+            console.log(e);
+        })
 }
 
-function updateQuantity(element){
+function updateQuantity(element) {
     let modalId = element.getAttribute('data-bs-target').substring(1)
     let url = element.getAttribute('data-url')
     let modal = document.getElementById(modalId)
@@ -154,13 +174,13 @@ function edit(element) {
                 }
             }
             if (key === 'manage_instrument_images') {
-                var manageInstrumentImage =  document.getElementById('manage_instrument_images')
+                var manageInstrumentImage = document.getElementById('manage_instrument_images')
                 manageInstrumentImage.href = dataAttributes[key]
             }
         }
-    } 
+    }
 
-    if(inputFile){
+    if (inputFile) {
         inputFile.addEventListener('change', function () {
             var file = inputFile.files[0]
             var displayImage = document.getElementById('display_image')
@@ -184,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
         form.addEventListener('submit', function (event) {
             event.preventDefault();
             submitButton.disabled = true;
-            
+
             var url = form.getAttribute('data-url');
             var formData = new FormData(form);
             fetch(url, {

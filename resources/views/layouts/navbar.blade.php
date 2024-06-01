@@ -34,8 +34,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-6 {{ Request::is('orders') ? 'text-white' : 'text-secondary' }}"
-                                aria-current="page" href="{{ route('orders') }}"><i class="fal fa-clipboard-list-check"></i> Orders</a>
+                            <a class="nav-link fs-6 {{ Request::is('order') ? 'text-white' : 'text-secondary' }}"
+                                aria-current="page" href="{{ route('order') }}"><i class="fal fa-clipboard-list-check"></i> Orders</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle fs-6 {{ Request::is('profile') ? 'text-white' : 'text-secondary' }}"
                                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
