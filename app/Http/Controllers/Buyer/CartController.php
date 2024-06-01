@@ -19,7 +19,9 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        $checkInstrument = Cart::where('instrument_id', $request->instrument_id)->where('user_id', Auth::user()->id)->first();
+        $checkInstrument = Cart::where('instrument_id', $request->instrument_id)
+            ->where('user_id', Auth::user()->id)
+            ->first();
         if ($checkInstrument) {
             return response()->json([
                 'status' => 422,
@@ -69,5 +71,53 @@ class CartController extends Controller
                 'message' => $th->getMessage(),
             ]);
         }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'quantity' => ['required', 'integer', 'min:1'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->errors(),
+            ]);
+        }
+        try {
+            $instrument = Instrument::find($request->instrument_id);
+            if ($instrument->stock < $request->quantity) {
+                return response()->json([
+                    'status' => 422,
+                    'errors' => [
+                        'quantity' => [
+                            0 => 'Insufficient stock',
+                        ],
+                    ],
+                ]);
+            }
+            $cart = Cart::find($id);
+            $cart->quantity = $request->quantity;
+            $cart->update();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Updated successfull',
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 500,
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function destroy($id)
+    {
+        $cart = Cart::findOrFail($id);
+        $cart->delete();
+        return back()->with([
+            'message' => 'Deleted successful',
+        ]);
     }
 }

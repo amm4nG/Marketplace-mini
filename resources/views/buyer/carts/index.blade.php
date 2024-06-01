@@ -46,6 +46,7 @@
             </div>
         </div>
     </div>
+    @include('buyer.carts.modal')
 @endsection
 @push('scripts')
     {{ $dataTable->scripts() }}
@@ -130,6 +131,6 @@
                     console.log(e);
                     $('#checkout').addClass("disabled");
                 })
-        }
+        } 
     </script>
 @endpush

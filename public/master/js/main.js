@@ -92,6 +92,23 @@ function detail(element){
     })
 }
 
+function updateQuantity(element){
+    let modalId = element.getAttribute('data-bs-target').substring(1)
+    let url = element.getAttribute('data-url')
+    let modal = document.getElementById(modalId)
+    let form = modal.querySelector('form')
+    form.dataset.url = url
+    let input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'instrument_id';
+    input.id = 'instrument_id'
+    input.value = element.getAttribute('data-instrument_id');
+    form.appendChild(input);
+
+    let quantity = document.getElementById('quantity')
+    quantity.value = element.getAttribute('data-quantity')
+}
+
 function edit(element) {
     var modalId = element.getAttribute('data-target').substring(1);
     var url = element.getAttribute('data-url');
