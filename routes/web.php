@@ -38,7 +38,7 @@ Route::group(['middleware' => ['role:admin|seller', 'auth'], 'prefix' => 'seller
     Route::resource('instruments', InstrumentController::class);
     Route::resource('images', InstrumentImageController::class);
     Route::resource('orders', SellerOrderController::class);
-    Route::put('payment/approve/{id}', [SellerPaymentController::class, 'update'])->name('payment');
+    Route::put('payment/update/{id}', [SellerPaymentController::class, 'update'])->name('payment');
 });
 
 Route::resource('users', UserController::class)->middleware(['auth', 'role:admin']);

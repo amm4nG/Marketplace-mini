@@ -52,7 +52,10 @@ class OrderDataTable extends DataTable
      */
     public function query(OrderInstrument $model): QueryBuilder
     {
-        return $model->newQuery();
+        $query = $model->newQuery();
+        return $query->whereHas('payment', function ($query) {
+            $query->where('status', '!=', 'paid')->whereOr('status', '!=', 'rejected');
+        });
     }
 
     /**

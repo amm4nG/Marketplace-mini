@@ -15,6 +15,7 @@ function confirmDeletion(id) {
 }
 
 function confirmPayment(element) {
+    let btnText = element.getAttribute('data-btn')
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -26,10 +27,54 @@ function confirmPayment(element) {
     }).then((result) => {
         if (result.isConfirmed) {
 
-            let btnText = element.getAttribute('data-btn')
             let note = document.getElementById('note').value
             let status = element.getAttribute('data-status')
-            
+            let url = element.getAttribute('data-url')
+            let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    note: note,
+                    status: status,
+                    _method: 'put'
+                })
+            })
+            .then(response => response.json())
+            .then(res => {
+                if (res.status === 422) {
+                    document.getElementById('note').classList.add('is-invalid')
+                }else if(res.status === 200){
+                    Swal.fire({
+                        title: "Good job!",
+                        text: res.message,
+                        icon: "success",
+                        isConfirmed: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/seller/orders';
+                        }
+                    });
+                }else{
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    });
+                }
+            })
+            .catch(e => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                });
+            })
         }
     });
 }
@@ -263,7 +308,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
                         });
                     } else {
-                        console.log(data);
                         $('.hide').click();
                         Swal.fire({
                             title: "Good job!",
@@ -280,8 +324,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 })
                 .catch(e => {
-                    submitButton.disabled = true;
-                    console.log(e);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    });
+                    submitButton.disabled = false;
                 })
         });
     });

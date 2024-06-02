@@ -59,13 +59,14 @@
                         </div>
                         <div class="col-md-7">
                             <label for="note">Note</label>
-                            <textarea name="note" class="form-control" id="note" cols="30" rows="3"></textarea>
-                            <a href="#" onclick="confirmPayment(this)" data-status="paid" data-btn="Yes, approve it!"
-                                class="btn btn-primary btn-sm mt-3 {{ $order->payment->status === 'unpaid' ? 'disabled' : '' }}">Approve</a>
-                            <a href="#" onclick="confirmPayment(this)" data-status="unpaid" data-btn="Yes, invalid it!"
-                                class="btn btn-warning btn-sm mt-3 {{ $order->payment->status === 'unpaid' ? 'disabled' : '' }}">Invalid</a>
-                            <a href="#" onclick="confirmPayment(this)" data-status="rejected" data-btn="Yes, reject it!"
-                                class="btn btn-danger btn-sm mt-3">Reject</a>
+                            <textarea name="note" class="form-control" id="note" cols="30" rows="3">{{ $order->payment->note }}</textarea>
+                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                The note field is required.
+                            </div>
+                            <a href="#" onclick="confirmPayment(this)" data-url="{{ route('seller.payment', $order->payment->id) }}" data-status="paid" data-btn="Yes, approve it!"
+                                class="btn btn-primary btn-sm mt-3 {{ $order->payment->status === 'unpaid' || $order->payment->status === 'paid' ? 'disabled' : '' }}">Approve</a>
+                            <a href="#" onclick="confirmPayment(this)" data-url="{{ route('seller.payment', $order->payment->id) }}" data-status="rejected" data-btn="Yes, invalid it!"
+                                class="btn btn-danger btn-sm mt-3 {{ $order->payment->status === 'unpaid' || $order->payment->status === 'paid' ? 'disabled' : '' }}">Rejected</a>
                         </div>
                     </div>
                 </div>

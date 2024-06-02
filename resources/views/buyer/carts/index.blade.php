@@ -121,7 +121,7 @@
                             allowEscapeKey: false
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = '/orders';
+                                window.location.href = '/order';
                             }
                         });
                     }
