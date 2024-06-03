@@ -43,8 +43,8 @@ class CartDataTable extends DataTable
             })
             ->addColumn('price', function (Cart $cart) {
                 return number_format($cart->quantity * $cart->instrument->price);
-            })
-            ->rawColumns(['checkbox', 'action']) // Ensure raw HTML is rendered
+            }) 
+            ->rawColumns(['checkbox', 'action'])
             ->setRowId('id');
     }
 
@@ -62,7 +62,7 @@ class CartDataTable extends DataTable
      */
     public function html(): HtmlBuilder
     {
-        return $this->builder()->setTableId('cart-table')->columns($this->getColumns())->minifiedAjax()->setTableHeadClass('text-primary fw-bold text-uppercase')->orderBy(1)->select(false)->buttons([]);
+        return $this->builder()->setTableId('cart-table')->columns($this->getColumns())->minifiedAjax()->setTableHeadClass('text-primary fw-bold text-uppercase')->orderBy(1)->buttons([]);
     }
 
     /**

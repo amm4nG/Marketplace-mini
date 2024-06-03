@@ -31,4 +31,9 @@
 @endsection
 @push('scripts')
     {{ $dataTable->scripts() }}
+    <script>
+        $(document).ready(function(){
+            $('#orderinstrument-table_filter').css('display', 'none');
+        });
+    </script>
 @endpush
