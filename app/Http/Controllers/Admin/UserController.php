@@ -100,7 +100,9 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             $user->username = $request->username;
             $user->email = $request->email;
-            $user->password = Hash::make($request->password);
+            if ($request->password) {
+                $user->password = Hash::make($request->password);
+            }
             $user->save();
             return response()->json([
                 'status' => 200,
@@ -109,7 +111,7 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => 500,
-                'errors' => $th->getMessage()
+                'errors' => $th->getMessage(),
             ]);
         }
     }
