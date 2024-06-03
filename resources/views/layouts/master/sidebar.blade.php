@@ -49,7 +49,7 @@
         </div>
         <li class="nav-item {{ Request::is('seller/slides') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('seller.slides.index') }}">
-                <i class="fas fa-fw fa-image"></i>
+                <i class="fas fa-fw fa-images"></i>
                 <span>Slide Show</span></a>
         </li>
         @if (Auth::user()->role === 'admin')
