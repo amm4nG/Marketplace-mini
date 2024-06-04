@@ -12,6 +12,12 @@ use Yajra\DataTables\Services\DataTable;
 
 class CartDataTable extends DataTable
 {
+    public $filterInstrument = null;
+
+    public function __construct($instrument = null)
+    {
+        $this->filterInstrument = $instrument;
+    }
     /**
      * Build the DataTable class.
      *
@@ -43,7 +49,7 @@ class CartDataTable extends DataTable
             })
             ->addColumn('price', function (Cart $cart) {
                 return number_format($cart->quantity * $cart->instrument->price);
-            }) 
+            })
             ->rawColumns(['checkbox', 'action'])
             ->setRowId('id');
     }
@@ -54,6 +60,14 @@ class CartDataTable extends DataTable
     public function query(Cart $model): QueryBuilder
     {
         $query = $model->newQuery();
+        if ($this->filterInstrument != null) {
+            return $query
+                ->where('user_id', Auth::user()->id)
+                ->whereHas('instrument', function ($query) {
+                    $query->where('name_instrument', 'like' , "%{$this->filterInstrument}%");
+                })
+                ->with('instrument');
+        }
         return $query->where('user_id', Auth::user()->id)->with('instrument');
     }
 
@@ -62,7 +76,16 @@ class CartDataTable extends DataTable
      */
     public function html(): HtmlBuilder
     {
-        return $this->builder()->setTableId('cart-table')->columns($this->getColumns())->minifiedAjax()->setTableHeadClass('text-primary fw-bold text-uppercase')->orderBy(1)->buttons([]);
+        return $this->builder()
+            ->setTableId('cart-table')
+            ->columns($this->getColumns())
+            ->setTableHeadClass('fw-bold text-uppercase')
+            ->parameters([
+                'searching' => false,
+                'lengthChange' => false,
+                'paging' => false,
+                'info' => false,
+            ]);
     }
 
     /**

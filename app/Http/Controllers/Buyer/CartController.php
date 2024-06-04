@@ -14,6 +14,7 @@ class CartController extends Controller
 {
     public function index(CartDataTable $dataTable)
     {
+        $dataTable = new CartDataTable(request()->get('name_instrument'));
         return $dataTable->render('buyer.carts.index');
     }
 

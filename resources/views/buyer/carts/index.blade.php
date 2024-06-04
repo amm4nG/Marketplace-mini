@@ -12,6 +12,13 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card p-4 mb-4">
+                    <div class="row mb-3">
+                        <div class="col-md-9">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="search" name="filter_instrument" id="filter_instrument" placeholder="Search" class="form-control float-end">
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         {{ $dataTable->table(['class' => 'table table-striped table-sm']) }}
                     </div>
@@ -131,6 +138,21 @@
                     console.log(e);
                     $('#checkout').addClass("disabled");
                 })
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#filter_instrument').keyup(function() {
+                reloadDataTable();
+            })
+        })
+
+        function reloadDataTable() {
+            let instrument = $('#filter_instrument').val();
+            let url = "{{ route('carts.index') }}";
+
+            window.LaravelDataTables['cart-table'].ajax.url(`${url}?name_instrument=${instrument}`)
+                .load();
         }
     </script>
 @endpush

@@ -16,6 +16,7 @@
                 <div class="card p-3">
                     <div class="row">
                         <div class="col-md-3 text-center">
+                            <h3 class="text-primary mb-3">Profile</h3>
                             <img src="{{ $user->profile->photo_profile ?? asset('assets/images/logo.png') }}" class="rounded-circle mb-3" alt="">
                         </div>
                         <div class="col-md-9">
