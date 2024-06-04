@@ -23,23 +23,27 @@
                             </div>
                         @endforeach
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon bg-secondary" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    @if ($slides->count() > 0)
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon bg-secondary" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        @else
+                        <h1 class="mt-4 text-primary">Data Empty</h1>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <div class="container-fluid mt-2 p-3">
         <div class="row justify-content-center">
-            @foreach ($instruments as $instrument)
+            @forelse ($instruments as $instrument)
                 <div class="col-md-2 mb-3">
                     <div class="card shadow text-primary rounded-2">
                         <img src="{{ asset('storage/' . $instrument->instrumentImages->first()->image) }}" class="img-cover"
@@ -55,14 +59,15 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-md-3">
-                <a href="{{ route('/.instruments.index') }}"
-                    class="text-center btn btn-light form-control rounded-5 mt-3 p-3">Show All <i
-                        class="fal fa-arrow-right fa-sm"></i></a>
-            </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="{{ route('/.instruments.index') }}"
+                            class="text-center btn btn-light form-control rounded-5 mt-3 p-3">Show All <i
+                                class="fal fa-arrow-right fa-sm"></i></a>
+                    </div>
+                </div>
+            @empty
+            @endforelse
         </div>
     </div>
 @endsection

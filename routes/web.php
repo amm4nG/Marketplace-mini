@@ -8,6 +8,7 @@ use App\Http\Controllers\Seller\InstrumentController;
 use App\Http\Controllers\Seller\InstrumentImageController;
 use App\Http\Controllers\Seller\SlideController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\LoginGoogleController;
 use App\Http\Controllers\Buyer\CartController;
 use App\Http\Controllers\Buyer\InstrumentController as BuyerInstrumentController;
 use App\Http\Controllers\HomeController;
@@ -55,3 +56,6 @@ Route::post('order/store', [OrderController::class, 'store'])->middleware('auth'
 Route::get('order/detail/{id}', [OrderController::class, 'detail'])->middleware('auth');
 
 Route::post('payment/store', [PaymentController::class, 'store'])->middleware('auth')->name('payment.store');
+
+Route::get('/auth/google/redirect', [LoginGoogleController::class, 'googleRedirect'])->name('google.redirect');
+Route::get('/auth/google/callback', [LoginGoogleController::class, 'googleCallback']);

@@ -16,7 +16,7 @@
                 <div class="card p-3">
                     <div class="row">
                         <div class="col-md-3 text-center">
-                            <img src="{{ asset('assets/images/logo.png') }}" class="rounded-circle mb-3" alt="">
+                            <img src="{{ $user->profile->photo_profile ?? asset('assets/images/logo.png') }}" class="rounded-circle mb-3" alt="">
                         </div>
                         <div class="col-md-9">
                             <form action="{{ route('profile.update', Auth::user()->id) }}" method="post">
@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="email" class="mb-2">Email</label>
-                                        <input type="email" value="{{ ($user->email) ?? old('email') }}"
+                                        <input type="email" value="{{ $user->email ?? old('email') }}"
                                             class="form-control @error('email')
                                         is-invalid
                                         @enderror"
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="mb-2">Name</label>
-                                        <input type="text" value="{{ ($user->profile->name) ?? old('name') }}"
+                                        <input type="text" value="{{ $user->profile->name ?? old('name') }}"
                                             class="form-control @error('name')
                                         is-invalid
                                         @enderror"
@@ -64,7 +64,8 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="no_handphone" class="mb-2">No Handphone</label>
-                                        <input type="text" value="{{ ($user->profile->no_handphone) ?? old('no_handphone') }}"
+                                        <input type="text"
+                                            value="{{ $user->profile->no_handphone ?? old('no_handphone') }}"
                                             class="form-control @error('no_handphone')
                                             is-invalid
                                             @enderror"
@@ -82,12 +83,10 @@
                                             is-invalid
                                         @enderror"
                                             id="gender">
-                                            <option value="l" @if ($user->profile->gender === 'l')
-                                                selected
-                                            @endif>Laki laki</option>
-                                            <option value="p" @if ($user->profile->gender === 'p')
-                                                selected
-                                            @endif>Perempuan</option>
+                                            <option value="l" @if ($user->profile->gender === 'l') selected @endif>Laki
+                                                laki</option>
+                                            <option value="p" @if ($user->profile->gender === 'p') selected @endif>
+                                                Perempuan</option>
                                         </select>
                                     </div>
                                     <div class="col-md-12 mb-3">
@@ -96,7 +95,7 @@
                                             class="form-control @error('address')
                                             is-invalid
                                         @enderror"
-                                            cols="30" rows="5">{{ ($user->profile->address) ?? old('address') }}</textarea>
+                                            cols="30" rows="5">{{ $user->profile->address ?? old('address') }}</textarea>
                                         @error('address')
                                             <span class="text-danger">
                                                 {{ $message }}

@@ -52,7 +52,7 @@
                             Register</button>
                         <p class="text-center">Have Registered? <a href="{{ route('login') }}">Login</a></p>
                         <div class="divider "><span>atau</span></div>
-                        <a href="" class="btn btn-light p-3 mb-3"><img
+                        <a href="{{ route('google.redirect') }}" class="btn btn-light p-3 mb-3"><img
                                 src="{{ asset('assets/images/icon/google-removebg-preview.png') }}"
                                 style="width: 35px; height: 35px;" alt="">
                             <span class="mt-1">

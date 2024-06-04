@@ -11,7 +11,8 @@
                         @csrf
                         <div class="row justify-content-center">
                             <div class="col-md-12 text-center">
-                                <img src="{{ asset('assets/images/logo.png') }}" class="rounded-circle" style="width: 70px; height: 70px;" alt="">
+                                <img src="{{ asset('assets/images/logo.png') }}" class="rounded-circle"
+                                    style="width: 70px; height: 70px;" alt="">
                             </div>
                         </div>
                         <h2 class="text-center mb-4 mt-2 text-primary fw-bold"><a href="{{ route('home') }}"
@@ -49,7 +50,7 @@
                             Login</button>
                         <p class="text-center">Not Registered? <a href="{{ route('register') }}">Register</a></p>
                         <div class="divider "><span>atau</span></div>
-                        <a href="" class="btn btn-light p-3 mb-3"><img
+                        <a href="{{ route('google.redirect') }}" class="btn btn-light p-3 mb-3"><img
                                 src="{{ asset('assets/images/icon/google-removebg-preview.png') }}"
                                 style="width: 35px; height: 35px;" alt="">
                             <span class="mt-1">
