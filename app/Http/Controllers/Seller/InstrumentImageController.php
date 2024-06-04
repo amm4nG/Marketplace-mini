@@ -24,7 +24,7 @@ class InstrumentImageController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'image_new' => ['required', 'image', 'mimes:jpeg,png,jpg'],
+                'image_new' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:1024'],
             ],
             [
                 'image_new.required' => 'Please choose your instrument image',
