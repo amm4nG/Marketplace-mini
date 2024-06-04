@@ -34,8 +34,7 @@
                             <span class="carousel-control-next-icon bg-secondary" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
-                        @else
-                        <h1 class="mt-4 text-primary">Data Empty</h1>
+                    @else
                     @endif
                 </div>
             </div>
@@ -59,15 +58,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <a href="{{ route('/.instruments.index') }}"
-                            class="text-center btn btn-light form-control rounded-5 mt-3 p-3">Show All <i
-                                class="fal fa-arrow-right fa-sm"></i></a>
-                    </div>
-                </div>
             @empty
+                <h1 class="mt-4 text-primary">Data Empty</h1>
             @endforelse
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <a href="{{ route('/.instruments.index') }}"
+                        class="text-center btn btn-light form-control rounded-5 mt-3 p-3">Show All <i
+                            class="fal fa-arrow-right fa-sm"></i></a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
