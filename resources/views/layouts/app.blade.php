@@ -20,7 +20,8 @@
     @include('layouts.navbar')
     @yield('content')
     @include('layouts.footer')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>

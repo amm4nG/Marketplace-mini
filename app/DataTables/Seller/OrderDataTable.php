@@ -11,6 +11,12 @@ use Yajra\DataTables\Services\DataTable;
 
 class OrderDataTable extends DataTable
 {
+    public $filterStatus = null;
+
+    public function __construct($status = null)
+    {
+        $this->filterStatus = $status;
+    }
     /**
      * Build the DataTable class.
      *
@@ -53,9 +59,12 @@ class OrderDataTable extends DataTable
     public function query(OrderInstrument $model): QueryBuilder
     {
         $query = $model->newQuery();
-        return $query->whereHas('payment', function ($query) {
-            $query->where('status', '!=', 'paid')->whereOr('status', '!=', 'rejected');
-        });
+        if ($this->filterStatus != null) {
+            return $query->whereHas('payment', function ($query) {
+                $query->where('status', $this->filterStatus);
+            });
+        }
+        return $query->with(['payment']);
     }
 
     /**
@@ -63,7 +72,20 @@ class OrderDataTable extends DataTable
      */
     public function html(): HtmlBuilder
     {
-        return $this->builder()->setTableId('orderinstrument-table')->columns($this->getColumns())->minifiedAjax()->setTableHeadClass('text-muted fw-bold text-uppercase gs-0')->orderBy(1)->select(false)->buttons([]);
+        return $this->builder()
+            ->setTableId('orderinstrument-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->setTableHeadClass(
+                'text-muted
+        fw-bold text-uppercase gs-0',
+            )
+            ->orderBy(1)
+            ->buttons([])
+            ->parameters([
+                // 'searching' => false,
+                // 'lengthChange' => false,
+            ]);
     }
 
     /**

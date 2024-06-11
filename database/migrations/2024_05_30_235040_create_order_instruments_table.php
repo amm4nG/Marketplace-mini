@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('order_instruments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamp('ordered_at')->useCurrent();
             $table->double('total_price');
             $table->timestamps();

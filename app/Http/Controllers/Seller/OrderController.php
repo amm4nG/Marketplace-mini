@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index(OrderDataTable $dataTable){
-        return $dataTable->render
-        ('seller.orders.index');
+    public function index(OrderDataTable $dataTable)
+    {
+        $dataTable = new OrderDataTable(request()->get('status'));
+        return $dataTable->render('seller.orders.index');
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $order = OrderInstrument::find($id);
         return view('seller.orders.show', compact('order'));
     }

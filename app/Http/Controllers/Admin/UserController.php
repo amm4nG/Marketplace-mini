@@ -118,10 +118,16 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return back()->with([
-            'message' => 'Deleted successfully',
-        ]);
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return back()->with([
+                'message' => 'Deleted successfully',
+            ]);
+        } catch (\Throwable $th) {
+            return back()->withErrors([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 }

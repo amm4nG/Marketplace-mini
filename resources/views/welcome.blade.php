@@ -59,15 +59,17 @@
                     </div>
                 </div>
             @empty
-                <h1 class="mt-4 text-primary">Data Empty</h1>
+                <h1 class="mt-4 text-primary mb-5 text-center"><i class="fas fa-search"></i> Data Empty</h1>
             @endforelse
-            <div class="row justify-content-center">
-                <div class="col-md-3">
-                    <a href="{{ route('/.instruments.index') }}"
-                        class="text-center btn btn-light form-control rounded-5 mt-3 p-3">Show All <i
-                            class="fal fa-arrow-right fa-sm"></i></a>
+            @if ($instruments->count() > 0)
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <a href="{{ route('/.instruments.index') }}"
+                            class="text-center btn btn-light form-control rounded-5 mt-3 p-3">Show All <i
+                                class="fal fa-arrow-right fa-sm"></i></a>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection

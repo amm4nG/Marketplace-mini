@@ -17,7 +17,8 @@
     <link href="{{ asset('master/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('master/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('master/datatables/datatable.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ asset('assets/selectpicker/css/bootstrap-select.min.css') }}">
 </head>
 
@@ -42,7 +43,8 @@
     <script src="{{ asset('master/js/sb-admin-2.min.js') }}"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
     
     <script src="{{ asset('master/datatables/datatable.js') }}"></script>
     <script src="{{ asset('master/js/main.js') }}"></script>
